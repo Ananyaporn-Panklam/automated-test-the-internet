@@ -1,22 +1,29 @@
 *** Keywords ***
 
 Verify ID Is Correct 
-    Should Be Equal As Integers   ${response_id}    ${expected_id}
+    [Arguments]    ${response_result}    ${expected_result}
+    Should Be Equal As Integers   ${response_result}    ${expected_result}
 
 Verify Email Is Correct
-    Should Be Equal As Strings    ${response_email}    ${expected_email}
+    [Arguments]    ${response_result}    ${expected_result}
+    Should Be Equal As Strings   ${response_result}    ${expected_result}
 
 Verify first Name Is Correct
-    Should Be Equal As Strings    ${response_first_name}    ${expected_first_name}
+    [Arguments]    ${response_result}    ${expected_result}
+    Should Be Equal As Strings    ${response_result}    ${expected_result}
 
 Verify Last Name Is Correct
-    Should Be Equal As Strings    ${response_last_name}    ${expected_last_name}
+    [Arguments]    ${response_result}    ${expected_result}
+    Should Be Equal As Strings    ${response_result}    ${expected_result}
 
 Verify Avatar Is Correct
-    Should Be Equal As Strings    ${response_avatar}    ${expected_avatar}
+    [Arguments]    ${response_result}    ${expected_result}
+    Should Be Equal As Strings    ${response_result}    ${expected_result}
 
 Verify Status Is Success 
-    Should Be Equal As Integers    ${response_status_code}    200
+    [Arguments]    ${response_result}    ${expected_result}
+    Should Be Equal As Integers    ${response_result}    ${expected_result}
 
 Verify Status Is Not Found
-    Should Be Equal As Integers    ${response_status_code}     404
+    [Arguments]    ${response_result}    ${expected_result}
+    Should Be Equal As Integers    ${response_result}    ${expected_result}

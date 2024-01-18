@@ -1,6 +1,6 @@
 *** Settings ***
 Library    RequestsLibrary
-Resource    ../../keywords/ger-user-profile.resource
+Resource    ../../keywords/get-user-profile.resource
 
 *** Variables ***
 ${base_url}    https://reqres.in/api/users
@@ -14,17 +14,12 @@ ${expected_id}    12
 TC-001 Get user profile success
     [Documentation]    To verify get user profile api will return correct data when trying to get profile of existing user.
     Call Get User Profile    ${base_url}    /12
-    Verify ID Is Correct    
-    Verify Email Is Correct    
-    Verify first Name Is Correct    
-    Verify Last Name Is Correct    
-    Verify Avatar Is Correct    
-    Verify Status Is Success   
+    Verify Response Body Is Correct - 200 Success
 
 TC-002 Get user profile but user not found
     [Documentation]    To verify get user profile api will return 404 not found when trying to get exist profile of not existing user.
     Call Get User Profile    ${base_url}    /1234  
-    Verify Status Is Not Found    
+    Verify Response Body Is Correct - Not Found  
     Verify Body Is Empty
 
 *** Keywords ***
@@ -55,3 +50,15 @@ Set Variables For 200 Status Code
 Verify Body Is Empty
     ${get_response}    Set Variable    ${response.content.decode('utf-8')}
     Should Be Equal    ${get_response}     {}
+
+Verify Response Body Is Correct - 200 Success
+    Verify ID Is Correct    ${response_id}    ${expected_id}
+    Verify Email Is Correct    ${response_email}    ${expected_email}
+    Verify first Name Is Correct    ${response_first_name}    ${expected_first_name}
+    Verify Last Name Is Correct    ${response_last_name}    ${expected_last_name}
+    Verify Avatar Is Correct     ${response_avatar}    ${expected_avatar}
+    Verify Status Is Success    ${response_status_code}    200
+
+Verify Response Body Is Correct - Not Found
+    Verify Status Is Not Found    ${response_status_code}     404
+    
