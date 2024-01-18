@@ -8,3 +8,9 @@ python --version
 robot --version
 pip install -r requirements.txt
 ```
+
+#### Execute all testcases
+```
+robot testcase/
+```
+
