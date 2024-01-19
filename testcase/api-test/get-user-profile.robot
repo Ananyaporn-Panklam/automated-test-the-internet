@@ -31,10 +31,11 @@ Call Get User Profile
     Set Test Variable    ${response}
     Set Test Variable    ${response_status_code}
 
-    Run Keyword And Continue On Failure    Run Keyword If    '${response_status_code}' == '200'
-        ...    Set Variables For 200 Status Code    
+    Run Keyword If    '${response_status_code}' == '200'
+        ...    Set Variables For 200 Status Code    ${response}
 
 Set Variables For 200 Status Code
+    [Arguments]    ${response}
     ${response_id}        Set Variable    ${response.json()['data']['id']}
     ${response_email}     Set Variable    ${response.json()['data']['email']}
     ${response_first_name}    Set Variable    ${response.json()['data']['first_name']}
