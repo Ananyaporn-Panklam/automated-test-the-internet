@@ -19,7 +19,7 @@ TC-001 Get user profile success
 TC-002 Get user profile but user not found
     [Documentation]    To verify get user profile api will return 404 not found when trying to get exist profile of not existing user.
     Call Get User Profile    ${base_url}    /1234  
-    Verify Response Body Is Correct - Not Found  
+    Verify Response Status Code - Not Found
     Verify Body Is Empty
 
 *** Keywords ***
@@ -60,6 +60,6 @@ Verify Response Body Is Correct - 200 Success
     Verify Avatar Is Correct     ${response_avatar}    ${expected_avatar}
     Verify Status Is Success    ${response_status_code}    200
 
-Verify Response Body Is Correct - Not Found
+Verify Response Status Code - Not Found
     Verify Status Is Not Found    ${response_status_code}     404
     
